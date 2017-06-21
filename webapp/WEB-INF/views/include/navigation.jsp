@@ -9,21 +9,21 @@
 						<li class="selected"><a href="${pageContext.servletContext.contextPath }/main">jx372</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/guestbook">방명록</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/board">게시판</a></li>
-						<li><a href="${pageContext.servletContext.contextPath }/mideaboard">미디어게시판</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/mediaboard">미디어게시판</a></li>
 					</c:when>
 					<c:when test="${param.menu == 'guestbook' }">
 						<li><a href="${pageContext.servletContext.contextPath }/main">jx372</a></li>
 						<li class="selected"><a href="${pageContext.servletContext.contextPath }/guestbook">방명록</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/board">게시판</a></li>
-						<li><a href="${pageContext.servletContext.contextPath }/mideaboard">미디어게시판</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/mediaboard">미디어게시판</a></li>
 					</c:when>
 					<c:when test="${param.menu == 'board' }">
 						<li><a href="${pageContext.servletContext.contextPath }/main">jx372</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/guestbook">방명록</a></li>
 						<li class="selected"><a href="${pageContext.servletContext.contextPath }/board">게시판</a></li>
-						<li><a href="${pageContext.servletContext.contextPath }/mideaboard">미디어게시판</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/mediaboard">미디어게시판</a></li>
 					</c:when>
-					<c:when test="${param.menu == 'mideaboard' }">
+					<c:when test="${param.menu == 'mediaboard' }">
 						<li><a href="${pageContext.servletContext.contextPath }/main">jx372</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/guestbook">방명록</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/board">게시판</a></li>
@@ -33,7 +33,7 @@
 						<li><a href="${pageContext.servletContext.contextPath }/main">jx372</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/guestbook">방명록</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/board">게시판</a></li>
-						<li><a href="${pageContext.servletContext.contextPath }/mideaboard">미디어게시판</a></li>
+						<li><a href="${pageContext.servletContext.contextPath }/mediaboard">미디어게시판</a></li>
 					</c:otherwise>					
 				</c:choose>
 			</ul>

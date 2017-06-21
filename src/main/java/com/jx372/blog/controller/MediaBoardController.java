@@ -4,11 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/board")
-public class BoardController {
+@RequestMapping("/mediaboard")
+public class MediaBoardController {
 	
 	@RequestMapping("")
 	public String list(){
-		return "/board/list";
+		
+		return "/mediaboard/list";
 	}
 }

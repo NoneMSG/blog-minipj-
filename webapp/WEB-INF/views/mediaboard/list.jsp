@@ -81,7 +81,7 @@
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/include/navigation.jsp">
-			<c:param name="menu" value="mideaboard"/>
+			<c:param name="menu" value="mediaboard"/>
 		</c:import>
 		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</div>
