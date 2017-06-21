@@ -26,7 +26,7 @@ public class UserController {
 	public String join(@ModelAttribute UserVo userVo){
 		userService.getJoin(userVo);
 	
-		return  "/user/joinsuccess"; //redirect
+		return  "redirect:/user/joinsuccess"; //redirect
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -37,5 +37,7 @@ public class UserController {
 	public String redirect(){
 		return "redirect:/user/joinsuccess";
 	}
+	
+	//@RequestMapping()
 	
 }

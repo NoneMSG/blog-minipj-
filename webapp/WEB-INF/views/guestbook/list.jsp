@@ -32,7 +32,7 @@
 					</table>
 				</form>
 				<ul>
-					<c:set var="count" value="${fn:length(list) }"/>
+					<c:set var="count" value="${fn:length(gbList) }"/>
 					<c:forEach items="${gbList }" var="vo" varStatus="status">
 						<li>
 							<table>
@@ -53,8 +53,10 @@
 				</ul>
 			</div>
 		</div>
-		<jsp:include page="/WEB-INF/views/include/navigation.jsp" />
-		<jsp:include page="/WEB-INF/views/include/footer.jsp" />
+		<c:import url="/WEB-INF/views/include/navigation.jsp">
+			<c:param name="menu" value="guestbook"/>
+		</c:import>
+		<c:import url="/WEB-INF/views/include/footer.jsp" />
 	</div>
 </body>
 </html>

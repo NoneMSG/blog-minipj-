@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import com.jx372.blog.vo.GuestBookVo;
 import com.jx372.blog.service.GuestBookService;
 
@@ -21,7 +19,7 @@ public class GuestBookController {
 	@Autowired
 	private GuestBookService guestbookService;
 	
-	@RequestMapping("/list")
+	@RequestMapping("")
 	public String list(Model model){
 		List<GuestBookVo> list = guestbookService.getContentList();
 		//System.out.println(list);
@@ -33,7 +31,7 @@ public class GuestBookController {
 	public String writing(@ModelAttribute GuestBookVo guestBookVo){
 		//System.out.println(guestBookVo);
 		guestbookService.getWriting(guestBookVo);
-		return "redirect:/guestbook/list";
+		return "redirect:/guestbook";
 	}
 	
 	@RequestMapping("/delete/{no}")
@@ -44,7 +42,7 @@ public class GuestBookController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String deleting(@ModelAttribute GuestBookVo guestBookVo){
 		guestbookService.getDeleting(guestBookVo);
-		return "redirect:/guestbook/list";
+		return "redirect:/guestbook";
 	}
 	
 }
