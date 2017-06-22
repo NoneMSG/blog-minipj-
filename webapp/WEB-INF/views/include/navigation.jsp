@@ -27,7 +27,7 @@
 						<li><a href="${pageContext.servletContext.contextPath }/main">jx372</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/guestbook">방명록</a></li>
 						<li><a href="${pageContext.servletContext.contextPath }/board">게시판</a></li>
-						<li class="selected"><a href="${pageContext.servletContext.contextPath }/mideaboard">미디어게시판</a></li>
+						<li class="selected"><a href="${pageContext.servletContext.contextPath }/mediaboard">미디어게시판</a></li>
 					</c:when>
 					<c:otherwise>
 						<li><a href="${pageContext.servletContext.contextPath }/main">jx372</a></li>

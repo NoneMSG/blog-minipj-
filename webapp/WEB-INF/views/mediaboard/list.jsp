@@ -24,37 +24,24 @@
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
-						<th>글쓴이</th>
-						<th>조회수</th>
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>	
 					
-					<c:forEach items="${blist }" var="bvo" varStatus="status">		
+					<c:forEach items="${map.list }" var="vo" varStatus="status">		
 					<tr>
-						<td>[${status.count }]</td>
-						<c:choose>
-							<c:when test="${bvo.depth > 0 }">
-								<td class="left" style="padding-left:${20*bvo.depth }px">
-									<img src="${pageContext.servletContext.contextPath }/assets/images/reply.png">
-									<a href="${pageContext.servletContext.contextPath }/board?a=viewform&bno=${bvo.no}">${bvo.title }</a>
-								</td>	
-							</c:when>
-							<c:otherwise>
-								<td class="left">
-								<a href="${pageContext.servletContext.contextPath }/board?a=viewform&bno=${bvo.no}">${bvo.title }</a>
-								</td>
-							</c:otherwise>
-						</c:choose>
-						<td>${bvo.userName }</td>
-						<td>${bvo.hit }</td>
-						<td>${bvo.regDate }</td>
+						<td>${map.totalCount - (map.currentPage - 1)*map.listSize - status.index }</td>
+						
+						<td class="left">
+							<a href="${pageContext.request.contextPath }/mediaboard/view${vo.no }?p=${map.currentPage }&kwd=${map.keyword }">${vo.title }</a>
+						</td>
+			
+						<td>${vo.regDate }</td>
 						<td>
 							<c:choose>
-								<c:when test="${not empty authUser && authUser.no == bvo.userNo}">
-									<a href="${pageContext.servletContext.contextPath }/board?a=delete&bno=${bvo.no}" class="del">삭제</a>
-								
-								</c:when>
+								<c:when test="${not empty authUser && authUser.no == vo.userNo}">
+								<a href="${pageContext.request.contextPath }/mediaboard/delete/${vo.no}" class="del">삭제</a>
+							</c:when>
 								<c:otherwise>
 									 &nbsp;
 								</c:otherwise>
@@ -66,17 +53,31 @@
 				
 				<div class="pager">
 					<ul>
-						<li><a href="">◀</a></li>
-						<li><a href="">1</a></li>
-						<li><a href="">2</a></li>
-						<li class="selected">3</li>
-						<li><a href="">4</a></li>
-						<li><a href="">5</a></li>
-						<li><a href="">▶</a></li>
+						<c:if test="${map.prevPage > 0 }" >
+							<li><a href="${map.pageContext.request.contextPath }/mediaboard?p=${map.prevPage }">◀</a></li>
+						</c:if>
+						
+						<c:forEach begin="${map.beginPage }" end="${map.beginPage + map.listSize - 1 }" var="page">
+							<c:choose>
+								<c:when test="${map.endPage < page }">
+									<li>${page }</li>
+								</c:when> 
+								<c:when test="${map.currentPage == page }">
+									<li class="selected">${page }</li>
+								</c:when>
+								<c:otherwise> 
+									<li><a href="${pageContext.request.contextPath }/mediaboard?p=${page }">${page }</a></li>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+						
+						<c:if test="${nextPage > 0 }" >
+							<li><a href="${pageContext.request.contextPath }/mediaboard?p=${map.nextPage }">▶</a></li>
+						</c:if>	
 					</ul>
-				</div>				
+				</div>								
 				<div class="bottom">
-					<a href="${pageContext.servletContext.contextPath }/board?a=writeform" id="new-book">글쓰기</a>
+					<a href="${pageContext.servletContext.contextPath }/mediaboard/write" id="new-book">글쓰기</a>
 				</div>				
 			</div>
 		</div>

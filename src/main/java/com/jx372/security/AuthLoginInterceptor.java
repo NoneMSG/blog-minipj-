@@ -23,6 +23,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 			throws Exception {
 
 			String email =request.getParameter("email");
+			String path = request.getParameter("path");
 			String password = request.getParameter("password");
 			
 			UserVo userVo = userService.getUser(email, password);
@@ -36,6 +37,7 @@ public class AuthLoginInterceptor extends HandlerInterceptorAdapter{
 			//login성공 처리 session에 authUser를 넘겨버리고 redirect시킴 데이터를 굳이 메서드로 접근시킬필요 없다.
 			HttpSession session  = request.getSession(true);
 			session.setAttribute("authUser", userVo);
+			
 			response.sendRedirect(request.getContextPath()+"/main");
 			return false;
 	}

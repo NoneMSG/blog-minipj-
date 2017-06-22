@@ -16,30 +16,19 @@
 		<div id="content">
 			<div id="user">
 
-				<form id="join-form" name="joinForm" method="post" action="${pageContext.servletContext.contextPath }/user/modify">
+				<form id="join-form" name="joinForm" method="post" action="${pageContext.request.contextPath }/user/modify" enctype="multipart/form-data">
 					<label class="block-label" for="name">이름</label>
-					<input id="name" name="name" type="text" value="${authUser.getName() }">
+					<input id="name" name="name" type="text" value="${userVo.getName() }">
 
 					<label class="block-label" for="email">이메일</label>
-					<h3>${authUser.getEmail() }</h3>
+					<h3>${userVo.getEmail() }</h3>
 					
 					<label class="block-label">패스워드</label>
 					<input name="password" type="password" value="">
 					
-					<fieldset>
-						<legend>성별</legend>
-						
-						<c:choose>
-							<c:when test="${authUser.getGender() == 'male' }">
-								<label>여</label> <input type="radio" name="gender" value="female">
-								<label>남</label> <input type="radio" name="gender" value="male" checked="checked">
-							</c:when>
-							<c:otherwise>
-								<label>여</label> <input type="radio" name="gender" value="female" checked="checked">
-								<label>남</label> <input type="radio" name="gender" value="male">
-							</c:otherwise>
-						</c:choose>
-					</fieldset>
+					<label class="block-label">사진 URL</label>
+					<img id="profile" src="${pageContext.request.contextPath }${userVo.path }">
+					<input type="file" name="file1">
 					
 					<input type="submit" value="수정하기">
 					

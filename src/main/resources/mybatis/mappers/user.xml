@@ -4,15 +4,15 @@
 <mapper namespace="user">
 	
 	<insert id="insert" parameterType="uservo">
-		<selectKey keyProperty="no" resultType="long" order="AFTER">
-				select last_insert_id()
-		</selectKey>
 		<![CDATA[
 			insert
 				into user
-			values (#{no}, #{email}, #{name}, password(#{password}), 'USER' ,'default')
+			values (null, #{email}, #{name}, password(#{password}), 'USER', 
+			'path=/uploads/images/20175228043568.png')
 		]]>
-		
+		<selectKey keyProperty="no" resultType="long" order="AFTER">
+				select last_insert_id()
+		</selectKey>
 	</insert>
 	
 	<select id="getByEmail" resultType="uservo" parameterType="string">
@@ -23,47 +23,58 @@
 	]]>
 	</select>	
 	
-	<select id="getByNo2" resultType="map" parameterType="long"> <!-- 내장객체, 객체만 넘길수 있다. -->
-	<![CDATA[
-		select no, name, email, gender, role
-		from user 
-		where no=#{no }
-	]]>
+	<select id="getpath" resultType="uservo">
+		<![CDATA[
+		select path
+		  from user	
+		  where no=#{no}   		
+		]]>
 	</select>
 	
 	<select id="getByInIdPw" resultType="uservo" parameterType="map">
 		<![CDATA[
-			select no, name, role
+			select no, name, role, path
 				from user 
 				where email=#{email}
 				and password = password(#{password})
+				
+		]]>
+	</select>
+	
+	<select id="getByInIdPwPath" resultType="uservo" parameterType="map">
+		<![CDATA[
+			select no, name, role, path
+				from user 
+				where email=#{email}
+				and password = password(#{password})
+				and path = #{path}
 		]]>
 	</select>
 	
  	<!-- 객체는 한개밖에 못 보낸다 -->
 	<select id="getByNo" resultType="uservo" parameterType="long"> <!-- 내장객체, 객체만 넘길수 있다. -->
 	<![CDATA[
-		select no, name, email, gender, role
+		select no, name, email, path
 		from user 
 		where no=#{no }
 	]]>
 	</select>
 	
 	<!-- Dynamic SQL -->
-	<update id="update" parameterType ="uservo" >
+	<update id="update" parameterType ="uservo"  >
 		<![CDATA[
 		update user 
 			set name=#{name},
 		]]>
 		<!-- if외에 choose when 사용가능 -->
-			<if test="password!='' ">
+			<if test="password !='' ">
 				<![CDATA[ 
 					password=password(#{password}),
 				]]>
 			</if>	
 		
 		<![CDATA[ 
-			gender=#{gender}
+		path=#{path}
 		where no = #{no}
 		]]>
 	</update>

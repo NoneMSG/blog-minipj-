@@ -13,6 +13,7 @@
 			<bean class="com.jx372.security.AuthUserHandlerMethodArgumentResolver" />
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
+	
 	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/user/auth" />
@@ -23,11 +24,28 @@
 			<mvc:mapping path="/user/logout" />
 			<bean class="com.jx372.security.AuthLogoutInterceptor" />
 		</mvc:interceptor>
-
 		
-
+		<mvc:interceptor>
+			<mvc:mapping path="/**" />
+			<mvc:exclude-mapping path="/user/auth" />
+			<mvc:exclude-mapping path="/user/logout" />
+			<mvc:exclude-mapping path="/assets/**" />
+			<bean class="com.jx372.security.AuthInterceptor" />
+			
+		</mvc:interceptor>
 	</mvc:interceptors>
+	
+	<mvc:resources mapping="/uploads/images/**" location="file:/uploads/" />
+	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 
+		<!-- 최대업로드 가능한 바이트크기 -->
+		<property name="maxUploadSize" value="52428800" />
+
+		<!-- defaultEncoding -->
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
 	<!-- controller area -->
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler />
