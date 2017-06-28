@@ -8,7 +8,7 @@
 		<![CDATA[
 			insert
 				into media_board
-			values (null, #{title}, #{content}, #{path}, now(), #{userNo})
+			values (null, #{title}, #{content}, #{path}, now(), #{userNo}, #{fileType}, 0)
 		]]>
 		
 	</insert>
@@ -40,7 +40,10 @@
 			 a.content as content,
 			 a.path as path,
 			 date_format(a.reg_date, '%Y-%m-%d %p %h:%i:%s') as regDate,
-			 a.user_no as userNo
+			 a.file_type as fileType,
+			 a.user_no as userNo,
+			 b.name as userName,
+			 a.hit as hit
 			 from media_board a, user b
 			where a.user_no = b.no
 			limit #{page }, #{size }				
@@ -53,9 +56,12 @@
 			 a.content as content,
 			  a.path as path,
 			 date_format(a.reg_date, '%Y-%m-%d %p %h:%i:%s') as regDate,
-			 a.user_no as userNo
+			 a.file_type as fileType,
+			 a.user_no as userNo,
+			 b.name as userName,
+			 a.hit as hit
 			 from media_board a, user b
-			where a.user_no = b.no
+			 where a.user_no = b.no
 			 and (title like '%${keyword }%' or content like '%${keyword }%') 
 			limit #{page }, #{size }				
 			]]>
@@ -65,8 +71,20 @@
 	
 	<select id="getContentByNo" resultType="mediaboardvo" parameterType="long">
 		<![CDATA[
-		select no, title, content, path from media_board where no=#{no}
+		select no, title, content, path, file_type as fileType from media_board where no=#{no}
 		]]>
 	</select>
+	
+	<update id="updateHit" parameterType="long">
+		<![CDATA[
+		update media_board set hit=hit+1 where no=#{no}
+		]]>
+	</update>
+	
+	<delete id="delete" parameterType="mediaboardvo">
+		<![CDATA[
+		delete from media_board where no = #{no} and user_no = #{userNo}
+		]]>
+	</delete>
 	
 </mapper>

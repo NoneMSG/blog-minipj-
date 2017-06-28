@@ -6,7 +6,19 @@ public class MediaBoardVo {
 	private String content;
 	private String path;
 	private String regDate;
+	private String author;
+	private String fileType;
+	private String category;
+	private String userName;
+	private String hit;
 	private Long userNo;
+	
+	public final String getUserName() {
+		return userName;
+	}
+	public final void setUserName(String userName) {
+		this.userName = userName;
+	}
 	public final Long getNo() {
 		return no;
 	}
@@ -37,16 +49,44 @@ public class MediaBoardVo {
 	public final void setRegDate(String regDate) {
 		this.regDate = regDate;
 	}
+	public final String getAuthor() {
+		return author;
+	}
+	public final void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	public final String getFileType() {
+		return fileType;
+	}
+	public final void setFileType(String fileType) {
+		this.fileType = fileType;
+	}
 	public final Long getUserNo() {
 		return userNo;
 	}
 	public final void setUserNo(Long userNo) {
 		this.userNo = userNo;
 	}
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
+	public final String getHit() {
+		return hit;
+	}
+	public final void setHit(String hit) {
+		this.hit = hit;
+	}
 	@Override
 	public String toString() {
 		return "MediaBoardVo [no=" + no + ", title=" + title + ", content=" + content + ", path=" + path + ", regDate="
-				+ regDate + ", userNo=" + userNo + "]";
+				+ regDate + ", author=" + author + ", fileType=" + fileType + ", category=" + category + ", userName="
+				+ userName + ", hit=" + hit + ", userNo=" + userNo + "]";
 	}
+	
 	
 }

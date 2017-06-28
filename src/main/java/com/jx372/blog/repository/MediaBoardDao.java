@@ -38,4 +38,12 @@ public class MediaBoardDao {
 		MediaBoardVo mbVo = sqlSession.selectOne("mediaboard.getContentByNo",no);
 		return mbVo;
 	}
+
+	public void getUpdateHit(Long no) {
+		sqlSession.update("mediaboard.updateHit",no);
+	}
+
+	public void getDelete(MediaBoardVo mbvo) {
+		sqlSession.delete("mediaboard.delete",mbvo);
+	}
 }

@@ -30,6 +30,10 @@
 							</td>
 						</tr>
 						<tr>
+							<td class="label"></td>
+							<td><label>재생 가능 동영상 확장자: .mp4 .avi</label> </td>
+						</tr>
+						<tr>
 							<td class="label">파일</td>
 							<td><input type="file" name="file"></td>
 						</tr>
@@ -43,7 +47,7 @@
 			</div>
 			</div>
 		<c:import url="/WEB-INF/views/include/navigation.jsp" >
-			<c:param name="menu" value="main"/>
+			<c:param name="menu" value="mediaboard"/>
 		</c:import>
 		<c:import url="/WEB-INF/views/include/footer.jsp" >
 		</c:import>

@@ -6,8 +6,6 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-
 import com.jx372.blog.repository.MediaBoardDao;
 import com.jx372.blog.vo.MediaBoardVo;
 
@@ -62,6 +60,15 @@ public class MediaBoardService {
 
 	public MediaBoardVo getContentView(Long no) {
 		return mediaBoardDao.getContent(no);
+	}
+
+	public void increaseHit(Long no) {
+		mediaBoardDao.getUpdateHit(no);
+	}
+
+	public void getDelete(MediaBoardVo mbvo) {
+		mediaBoardDao.getDelete(mbvo);
+		
 	}
 
 }

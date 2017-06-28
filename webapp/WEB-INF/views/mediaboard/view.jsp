@@ -30,11 +30,19 @@
 						<td>
 							<div class="view-content">
 								${fn:replace(mbvo.content, newLine, "<br>") }
+								${mbvo.fileType}
 							</div>
-							<img src="${pageContext.request.contextPath }${mbvo.path}">
-							<video width="320" height="240" controls>
-							<source src="${pageContext.request.contextPath }${mbvo.path}" type="video/mp4">
-							</video>
+							<c:choose>
+								<c:when test="${mbvo.fileType == '.mp4'  }">
+									<video width="320" height="240" controls>
+									<source src="${pageContext.request.contextPath }${mbvo.path}" type="video/mp4">
+									</video>
+								</c:when>
+								<c:otherwise>
+									<img src="${pageContext.request.contextPath }${mbvo.path}">
+								</c:otherwise>
+							</c:choose>
+							
 						</td>
 					</tr>
 				</table>
@@ -45,7 +53,7 @@
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/include/navigation.jsp" >
-			<c:param name="menu" value="main"/>
+			<c:param name="menu" value="mediaboard"/>
 		</c:import>
 		<c:import url="/WEB-INF/views/include/footer.jsp" >
 		</c:import>

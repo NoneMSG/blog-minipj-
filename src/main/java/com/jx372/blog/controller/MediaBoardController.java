@@ -53,12 +53,18 @@ public class MediaBoardController {
 			@AuthUser UserVo authUser,
 			@ModelAttribute MediaBoardVo mediaBoardvo,
 			@RequestParam(value="file") MultipartFile file){
-		String filePath = fileUploadService.restore(file);
-		//System.out.println(filePath);
-		//System.out.println(authUser.getNo());
+
+		String filePath="noFile";
+		String extName ="noType";
+		if(file.getSize()!=0 && file.getSize()>0){
+			filePath = fileUploadService.restore(file);
+			extName = filePath.substring( filePath.lastIndexOf( '.' ), filePath.length());
+		}
+
 		mediaBoardvo.setUserNo(authUser.getNo());
 		mediaBoardvo.setPath(filePath);
-		System.out.println(mediaBoardvo);
+		mediaBoardvo.setFileType(extName);
+
 		mediaboardService.getWrite(mediaBoardvo);
 		return "redirect:/mediaboard";
 	}
@@ -69,7 +75,23 @@ public class MediaBoardController {
 			Model model
 			){
 		MediaBoardVo mbvo = (MediaBoardVo)mediaboardService.getContentView(no);
+		mediaboardService.increaseHit(no);
 		model.addAttribute("mbvo",mbvo);
 		return "/mediaboard/view";
 	}
+	
+	
+	@RequestMapping("/delete/{no}")
+	public String delete(
+			@PathVariable("no") Long no,
+			@AuthUser UserVo authUser
+			){
+		MediaBoardVo mbvo = new MediaBoardVo();
+		mbvo.setNo(no);
+		mbvo.setUserNo(authUser.getNo());
+		//System.out.println(mbvo);
+		mediaboardService.getDelete(mbvo);
+		return "redirect:/mediaboard";
+	}
+	
 }

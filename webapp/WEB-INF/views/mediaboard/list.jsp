@@ -24,6 +24,8 @@
 					<tr>
 						<th>번호</th>
 						<th>제목</th>
+						<th>글쓴이</th>
+						<th>조회수</th>
 						<th>작성일</th>
 						<th>&nbsp;</th>
 					</tr>	
@@ -35,7 +37,8 @@
 						<td class="left">
 							<a href="${pageContext.request.contextPath }/mediaboard/view${vo.no }?p=${map.currentPage }&kwd=${map.keyword }">${vo.title }</a>
 						</td>
-			
+						<td>${vo.userName }</td>
+						<td>${vo.hit }</td>
 						<td>${vo.regDate }</td>
 						<td>
 							<c:choose>
