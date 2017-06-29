@@ -30,17 +30,18 @@
 						<td>
 							<div class="view-content">
 								${fn:replace(mbvo.content, newLine, "<br>") }
-								${mbvo.fileType}
 							</div>
+							
 							<c:choose>
-								<c:when test="${mbvo.fileType == '.mp4'  }">
+								<c:when test="${mbvo.fileType == '.mp4' || mbvo.fileType == '.avi'  }">
 									<video width="320" height="240" controls>
 									<source src="${pageContext.request.contextPath }${mbvo.path}" type="video/mp4">
 									</video>
 								</c:when>
-								<c:otherwise>
+								<c:when test="${mbvo.fileType =='.jpg' || mbvo.fileType =='.png' }">
 									<img src="${pageContext.request.contextPath }${mbvo.path}">
-								</c:otherwise>
+								</c:when>
+								
 							</c:choose>
 							
 						</td>

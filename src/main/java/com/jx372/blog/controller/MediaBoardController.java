@@ -84,6 +84,7 @@ public class MediaBoardController {
 	@RequestMapping("/delete/{no}")
 	public String delete(
 			@PathVariable("no") Long no,
+			@RequestParam(value="p", required=true, defaultValue="1")Long page,
 			@AuthUser UserVo authUser
 			){
 		MediaBoardVo mbvo = new MediaBoardVo();
@@ -91,7 +92,8 @@ public class MediaBoardController {
 		mbvo.setUserNo(authUser.getNo());
 		//System.out.println(mbvo);
 		mediaboardService.getDelete(mbvo);
-		return "redirect:/mediaboard";
+		
+		return "redirect:/mediaboard?p="+page;
 	}
 	
 }

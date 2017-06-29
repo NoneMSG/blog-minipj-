@@ -24,27 +24,31 @@ public class MediaBoardService {
 	}
 
 	public Map<String, Object> getMessageList(int currentPage, String keyword){
-		int totalCount = mediaBoardDao.getTotalCount(); 
-		int pageCount = (int)Math.ceil( (double)totalCount / LIST_SIZE );
-		int blockCount = (int)Math.ceil( (double)pageCount / PAGE_SIZE );
-		int currentBlock = (int)Math.ceil( (double)currentPage / PAGE_SIZE );
+		int totalCount = mediaBoardDao.getTotalCount(); //총 게시글의 수
+		int pageCount = (int)Math.ceil( (double)totalCount / LIST_SIZE ); //총 페이지 수
+		int blockCount = (int)Math.ceil( (double)pageCount / PAGE_SIZE ); //5개씩의 페이지 묶음이 몇개나 존재하는지
+		int currentBlock = (int)Math.ceil( (double)currentPage / PAGE_SIZE ); // 5개씩 페이지의 묶음에서 현재 몇번째에 위치한지
 		
-		if( currentPage < 1 ) {
+		if( currentPage < 1 ) { //현재 페이지가 0이하일 때 현재 페이지 1로 고정
 			currentPage = 1;
-			currentBlock = 1;
-		} else if( currentPage > pageCount ) {
-			currentPage = pageCount;
-			currentBlock = (int)Math.ceil( (double)currentPage / PAGE_SIZE );
+			currentBlock = 1; //현재 블록도 1 
+		} else if( currentPage > pageCount ) { //현재 페이지가 총 페이지수 보다 높다면
+			currentPage = pageCount; 			//현재 페이지는 총 페이지와 같고
+			currentBlock = (int)Math.ceil( (double)currentPage / PAGE_SIZE ); //현재 블록은 현재페이지에서 페이지사이즈 5를 나눈곳이된다.
 		}
-		int beginPage = currentBlock == 0 ? 1 : (currentBlock - 1)*PAGE_SIZE + 1;
-		int prevPage = ( currentBlock > 1 ) ? ( currentBlock - 1 ) * PAGE_SIZE : 0;
-		int nextPage = ( currentBlock < blockCount ) ? currentBlock * PAGE_SIZE + 1 : 0;
-		int endPage = ( nextPage > 0 ) ? ( beginPage - 1 ) + LIST_SIZE : pageCount;
+		System.out.println(pageCount+":::"+blockCount+":::"+currentBlock);
+		
+		int beginPage = currentBlock == 0 ? 1 : (currentBlock - 1)*PAGE_SIZE + 1; //화면에 보여줄 시작페이지 결정 
+		int prevPage = ( currentBlock > 1 ) ? ( currentBlock - 1 ) * PAGE_SIZE : 0; //이전 페이지 결정
+		int nextPage = ( currentBlock < blockCount ) ? currentBlock * PAGE_SIZE + 1 : 0; //다음 페이지 결정
+		int endPage = ( nextPage > 0 ) ? ( beginPage - 1 ) + LIST_SIZE : pageCount; //끝 페이지 결정(게시글이 존재하는 페이지 끝)
 		
 		List<MediaBoardVo> list = mediaBoardDao.getList(keyword ,currentPage, LIST_SIZE );
 		
 		Map<String, Object> map = new HashMap<String, Object>();
+		
 		System.out.println(beginPage+"::::"+prevPage+":::::"+nextPage+":::::"+endPage);
+		
 		map.put( "list", list );
 		map.put( "totalCount", totalCount );
 		map.put( "listSize", LIST_SIZE );

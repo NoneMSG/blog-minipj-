@@ -31,7 +31,8 @@
 						</tr>
 						<tr>
 							<td class="label"></td>
-							<td><label>재생 가능 동영상 확장자: .mp4 .avi</label> </td>
+							<td><label>재생 가능 동영상 확장자 : .mp4 .avi<br>사용 가능 사진 확장자 : .jpg .png</label> </td>
+							
 						</tr>
 						<tr>
 							<td class="label">파일</td>

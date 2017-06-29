@@ -43,7 +43,7 @@
 						<td>
 							<c:choose>
 								<c:when test="${not empty authUser && authUser.no == vo.userNo}">
-								<a href="${pageContext.request.contextPath }/mediaboard/delete/${vo.no}" class="del">삭제</a>
+								<a href="${pageContext.request.contextPath }/mediaboard/delete/${vo.no}?p=${map.currentPage }" class="del">삭제</a>
 							</c:when>
 								<c:otherwise>
 									 &nbsp;
