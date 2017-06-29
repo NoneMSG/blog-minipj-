@@ -44,7 +44,7 @@ public class MediaBoardService {
 		List<MediaBoardVo> list = mediaBoardDao.getList(keyword ,currentPage, LIST_SIZE );
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
+		System.out.println(beginPage+"::::"+prevPage+":::::"+nextPage+":::::"+endPage);
 		map.put( "list", list );
 		map.put( "totalCount", totalCount );
 		map.put( "listSize", LIST_SIZE );

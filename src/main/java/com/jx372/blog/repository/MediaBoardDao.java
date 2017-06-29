@@ -25,12 +25,12 @@ public class MediaBoardDao {
 		return sqlSession.selectOne("mediaboard.totalCount");
 	}
 
-	public List<MediaBoardVo> getList(String keyword, int page, int size) {
+	public List<MediaBoardVo> getList(String keyword, Integer page, Integer size) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keyword", keyword);
 		map.put( "page", (page-1)*size );
 		map.put( "size", size );
-		
+		//System.out.println(map.get("page")+":::::::"+map.get("size"));
 		return sqlSession.selectList( "mediaboard.getList", map );
 	}
 

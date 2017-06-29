@@ -33,7 +33,7 @@
 	
 	<select id="getList" parameterType="map" resultType="mediaboardvo">
 		<choose>
-			<when test="keyword == null or keyword == ''">
+			<when test="keyword == null or keyword == '' ">
 			<![CDATA[
 			select a.no as no,
 			 a.title as title,

@@ -57,7 +57,7 @@
 				<div class="pager">
 					<ul>
 						<c:if test="${map.prevPage > 0 }" >
-							<li><a href="${map.pageContext.request.contextPath }/mediaboard?p=${map.prevPage }">◀</a></li>
+							<li><a href="${pageContext.request.contextPath }/mediaboard?p=${map.prevPage }">◀</a></li>
 						</c:if>
 						
 						<c:forEach begin="${map.beginPage }" end="${map.beginPage + map.listSize - 1 }" var="page">
@@ -74,7 +74,7 @@
 							</c:choose>
 						</c:forEach>
 						
-						<c:if test="${nextPage > 0 }" >
+						<c:if test="${map.nextPage > 0 }" >
 							<li><a href="${pageContext.request.contextPath }/mediaboard?p=${map.nextPage }">▶</a></li>
 						</c:if>	
 					</ul>
