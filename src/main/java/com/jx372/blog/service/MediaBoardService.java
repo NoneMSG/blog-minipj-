@@ -51,6 +51,7 @@ public class MediaBoardService {
 		
 		map.put( "list", list );
 		map.put( "totalCount", totalCount );
+		map.put("pageCount", pageCount);
 		map.put( "listSize", LIST_SIZE );
 		map.put( "currentPage", currentPage );
 		map.put( "beginPage", beginPage );

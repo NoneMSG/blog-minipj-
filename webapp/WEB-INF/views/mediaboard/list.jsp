@@ -79,9 +79,11 @@
 						</c:if>	
 					</ul>
 				</div>								
+				
 				<div class="bottom">
-					<a href="${pageContext.servletContext.contextPath }/mediaboard/write" id="new-book">글쓰기</a>
-				</div>				
+					<a href="${pageContext.servletContext.contextPath }/mediaboard/write${map.pageCount}" id="new-book">글쓰기</a>
+				</div>			
+					
 			</div>
 		</div>
 		<c:import url="/WEB-INF/views/include/navigation.jsp">

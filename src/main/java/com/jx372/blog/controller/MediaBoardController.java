@@ -41,9 +41,12 @@ public class MediaBoardController {
 	}
 	
 	@Auth
-	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public String write(@AuthUser UserVo authUser){
-		
+	@RequestMapping(value="/write{p}", method=RequestMethod.GET)
+	public String write(
+			@PathVariable("p")Long page,
+			Model model,
+			@AuthUser UserVo authUser){
+		model.addAttribute("p",page);
 		return "/mediaboard/write";
 	}
 	
@@ -51,6 +54,7 @@ public class MediaBoardController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String write(
 			@AuthUser UserVo authUser,
+			@RequestParam(value="p", required=true, defaultValue="1")Integer page,
 			@ModelAttribute MediaBoardVo mediaBoardvo,
 			@RequestParam(value="file") MultipartFile file){
 
@@ -66,7 +70,7 @@ public class MediaBoardController {
 		mediaBoardvo.setFileType(extName);
 
 		mediaboardService.getWrite(mediaBoardvo);
-		return "redirect:/mediaboard";
+		return "redirect:/mediaboard?p="+page;
 	}
 	
 	@RequestMapping("/view{no}")
@@ -84,7 +88,7 @@ public class MediaBoardController {
 	@RequestMapping("/delete/{no}")
 	public String delete(
 			@PathVariable("no") Long no,
-			@RequestParam(value="p", required=true, defaultValue="1")Long page,
+			@RequestParam(value="p", required=true, defaultValue="1")Integer page,
 			@AuthUser UserVo authUser
 			){
 		MediaBoardVo mbvo = new MediaBoardVo();
