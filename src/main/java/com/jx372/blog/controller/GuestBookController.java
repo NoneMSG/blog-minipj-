@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.jx372.blog.vo.GuestBookVo;
+import com.jx372.blog.vo.UserVo;
+import com.jx372.security.AuthUser;
 import com.jx372.blog.service.GuestBookService;
 
 @Controller
@@ -42,6 +44,13 @@ public class GuestBookController {
 	@RequestMapping(value="/delete", method=RequestMethod.POST)
 	public String deleting(@ModelAttribute GuestBookVo guestBookVo){
 		guestbookService.getDeleting(guestBookVo);
+		return "redirect:/guestbook";
+	}
+	
+	@RequestMapping("/deletebyadmin/{no}")
+	public String deleteByAdmin(@AuthUser UserVo authUser,@PathVariable("no") Long no){
+		guestbookService.getAdminDelete(authUser.getRole(), no);
+		
 		return "redirect:/guestbook";
 	}
 	

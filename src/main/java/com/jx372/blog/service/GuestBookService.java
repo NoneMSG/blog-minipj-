@@ -27,4 +27,10 @@ public class GuestBookService {
 		guestBookDao.getDeleting(guestBookVo);
 	}
 
+	public void getAdminDelete(String role,Long no) {
+		if(role!="USER")
+		guestBookDao.getDeleteByAdmin(no);
+		
+	}
+
 }

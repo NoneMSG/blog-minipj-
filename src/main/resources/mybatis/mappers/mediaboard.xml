@@ -82,9 +82,15 @@
 	</update>
 	
 	<delete id="delete" parameterType="mediaboardvo">
-		<![CDATA[
-		delete from media_board where no = #{no} and user_no = #{userNo}
-		]]>
+		<if test=" userRole == 'USER'">
+			<![CDATA[
+			delete from media_board where no = #{no} and user_no = #{userNo}
+			]]>
+		</if>
+			<![CDATA[
+				delete from media_board where no = #{no}
+			]]>
 	</delete>
+	
 	
 </mapper>

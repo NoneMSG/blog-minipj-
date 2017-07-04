@@ -46,4 +46,5 @@ public class MediaBoardDao {
 	public void getDelete(MediaBoardVo mbvo) {
 		sqlSession.delete("mediaboard.delete",mbvo);
 	}
+
 }

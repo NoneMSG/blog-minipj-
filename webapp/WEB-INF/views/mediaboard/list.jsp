@@ -42,7 +42,7 @@
 						<td>${vo.regDate }</td>
 						<td>
 							<c:choose>
-								<c:when test="${not empty authUser && authUser.no == vo.userNo}">
+								<c:when test="${(not empty authUser && authUser.no == vo.userNo) || authUser.role=='ADMIN'}">
 								<a href="${pageContext.request.contextPath }/mediaboard/delete/${vo.no}?p=${map.currentPage }" class="del">삭제</a>
 							</c:when>
 								<c:otherwise>

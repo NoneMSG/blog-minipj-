@@ -40,7 +40,14 @@
 									<td>[${count-status.index}]</td>
 									<td>${vo.name }</td>
 									<td>${vo.regDate }</td>
-									<td><a href="${pageContext.servletContext.contextPath }/guestbook/delete/${vo.no }">삭제</a></td>
+									<c:choose>
+									<c:when test="${authUser.role =='ADMIN'}">
+										<td><a href="${pageContext.servletContext.contextPath }/guestbook/deletebyadmin/${vo.no }">삭제</a></td>
+									</c:when>
+									<c:otherwise>
+										<td><a href="${pageContext.servletContext.contextPath }/guestbook/delete/${vo.no }">삭제</a></td>
+									</c:otherwise>
+									</c:choose>
 								</tr>
 								<tr>
 									<td colspan="4">${fn:replace(vo.content, newLine, "<br>") }</td>

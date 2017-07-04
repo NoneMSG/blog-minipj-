@@ -12,7 +12,14 @@ public class MediaBoardVo {
 	private String userName;
 	private String hit;
 	private Long userNo;
+	private String userRole;
 	
+	public final String getUserRole() {
+		return userRole;
+	}
+	public final void setUserRole(String userRole) {
+		this.userRole = userRole;
+	}
 	public final String getUserName() {
 		return userName;
 	}
@@ -85,7 +92,7 @@ public class MediaBoardVo {
 	public String toString() {
 		return "MediaBoardVo [no=" + no + ", title=" + title + ", content=" + content + ", path=" + path + ", regDate="
 				+ regDate + ", author=" + author + ", fileType=" + fileType + ", category=" + category + ", userName="
-				+ userName + ", hit=" + hit + ", userNo=" + userNo + "]";
+				+ userName + ", hit=" + hit + ", userNo=" + userNo + ", userRole=" + userRole + "]";
 	}
 	
 	

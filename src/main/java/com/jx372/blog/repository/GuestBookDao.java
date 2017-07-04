@@ -28,5 +28,8 @@ public class GuestBookDao {
 		sqlSession.delete("guestbook.deleting",guestBookVo);
 		
 	}
+	public void getDeleteByAdmin(Long no) {
+		sqlSession.delete("guestbook.deleteByAdmin",no);
+	}
 
 }

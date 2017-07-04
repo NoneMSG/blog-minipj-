@@ -91,12 +91,13 @@ public class MediaBoardController {
 			@RequestParam(value="p", required=true, defaultValue="1")Integer page,
 			@AuthUser UserVo authUser
 			){
+		
 		MediaBoardVo mbvo = new MediaBoardVo();
 		mbvo.setNo(no);
 		mbvo.setUserNo(authUser.getNo());
-		//System.out.println(mbvo);
-		mediaboardService.getDelete(mbvo);
 		
+		mediaboardService.getDelete(mbvo);
+
 		return "redirect:/mediaboard?p="+page;
 	}
 	
