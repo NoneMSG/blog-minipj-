@@ -36,7 +36,7 @@ public class MediaBoardService {
 			currentPage = pageCount; 			//현재 페이지는 총 페이지와 같고
 			currentBlock = (int)Math.ceil( (double)currentPage / PAGE_SIZE ); //현재 블록은 현재페이지에서 페이지사이즈 5를 나눈곳이된다.
 		}
-		System.out.println(pageCount+":::"+blockCount+":::"+currentBlock);
+	//	System.out.println(pageCount+":::"+blockCount+":::"+currentBlock);
 		
 		int beginPage = currentBlock == 0 ? 1 : (currentBlock - 1)*PAGE_SIZE + 1; //화면에 보여줄 시작페이지 결정 
 		int prevPage = ( currentBlock > 1 ) ? ( currentBlock - 1 ) * PAGE_SIZE : 0; //이전 페이지 결정
@@ -47,7 +47,7 @@ public class MediaBoardService {
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
-		System.out.println(beginPage+"::::"+prevPage+":::::"+nextPage+":::::"+endPage);
+		//System.out.println(beginPage+"::::"+prevPage+":::::"+nextPage+":::::"+endPage);
 		
 		map.put( "list", list );
 		map.put( "totalCount", totalCount );

@@ -5,3 +5,21 @@
 #site-introduction img#profile	{  display:block; float:left; width:500px ; height:500px}
 #site-introduction h2		   	{ float:left; width:320px; margin:50px 0 0 20px }
 #site-introduction p			{ clear:both; font-size:1.1em; padding:20px; line-height:1.5em }
+
+
+#header ul{
+	display: block;
+}
+#header ul li{
+
+}
+#mypic{
+	position:relative;
+	background-size:25px 25px ;
+	background:no-repeat;
+	height:50px ; 
+	width: 50px ;
+	bottom:20px;
+	padding-left: 370px;
+	
+}
