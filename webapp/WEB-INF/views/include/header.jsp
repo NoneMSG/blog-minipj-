@@ -4,14 +4,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <style type="text/css">
 #mypic{
-	position:relative;
-	background-size:25px 25px ;
-	background:no-repeat;
-	height:50px ; 
-	width: 50px ;
-	bottom:20px;
-	padding-left: 370px;
+
 	
+	max-height:100px ; 
+	max-width: 100px ;
+	position: relative;
+	bottom: 20px;
+}
+#header ul li{
+	bottom:20px;
 }
 </style>
 		<div id="header">
@@ -23,11 +24,10 @@
 						<li><a href="${pageContext.servletContext.contextPath }/user/join">회원가입</a><li>
 					</c:when>
 					<c:otherwise>
-						
 						<li><a href="${pageContext.servletContext.contextPath }/user/modify">회원정보수정</a><li>
 						<li><a href="${pageContext.servletContext.contextPath }/user/logout">로그아웃</a><li>
 						<li>${authUser.name }님 안녕하세요 ^^;</li>
-						<div><img id="mypic" src="${pageContext.request.contextPath }${authUser.path }"></div>
+						<li><img id="mypic" src="${pageContext.request.contextPath }${authUser.path }"></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

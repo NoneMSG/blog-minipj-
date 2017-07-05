@@ -11,6 +11,13 @@
 <title>mysite</title>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <link href="${pageContext.servletContext.contextPath }/assets/css/board.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+#imgview{
+	background:300px 300px no-repeat;
+	width: 300px;
+	height: 250px;
+}
+</style>
 </head>
 <body>
 	<div id="container">
@@ -39,7 +46,7 @@
 									</video>
 								</c:when>
 								<c:when test="${mbvo.fileType =='.jpg' || mbvo.fileType =='.png' }">
-									<img src="${pageContext.request.contextPath }${mbvo.path}">
+									<img id="imgview" src="${pageContext.request.contextPath }${mbvo.path}">
 								</c:when>
 								
 							</c:choose>
